@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Birthday Surprise 🎂</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #fff5f8, #f5f0ff);
+    color: #333;
+}
+
+.container {
+    width: 100%;
+    max-width: 650px;
+}
+
+/* Terminal */
+.terminal {
+    background: #111827;
+    color: #d1d5db;
+    border-radius: 22px;
+    padding: 30px 25px;
+    min-height: 280px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    direction: ltr;
+    text-align: left;
+}
+
+.terminal-top {
+    color: #9ca3af;
+    margin-bottom: 20px;
+}
+
+#typing {
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+.cursor {
+    display: inline-block;
+    width: 8px;
+    height: 18px;
+    background: #fff;
+    margin-left: 3px;
+    animation: blink 1s infinite;
+}
+
+button {
+    margin-top: 30px;
+    border: none;
+    padding: 14px 24px;
+    border-radius: 30px;
+    background: #f3d7e5;
+    color: #3d2632;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Birthday card */
+.card {
+    position: relative;
+    overflow: hidden;
+    background: white;
+    border-radius: 25px;
+    padding: 35px 25px;
+    text-align: center;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+}
+
+.hidden {
+    display: none;
+}
+
+.cake {
+    font-size: 65px;
+    margin-bottom: 5px;
+}
+
+h1 {
+    font-size: 29px;
+    margin: 10px 0 20px;
+}
+
+.message {
+    font-size: 17px;
+    line-height: 2;
+    text-align: right;
+}
+
+.footer {
+    margin-top: 25px;
+    font-size: 13px;
+    color: #888;
+}
+
+.float {
+    position: absolute;
+    font-size: 22px;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+@keyframes float {
+    0%,100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-12px);
+    }
+}
+
+@media(max-width:450px) {
+    .terminal {
+        padding: 25px 18px;
+    }
+
+    .card {
+        padding: 30px 18px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    .message {
+        font-size: 15px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- شاشة البداية -->
+    <div class="terminal" id="terminal">
+
+        <div class="terminal-top">
+            student@computer-engineering:~$
+        </div>
+
+        <div id="typing"></div>
+
+        <button id="openButton" disabled>
+            جاري تجهيز المفاجأة...
+        </button>
+
+    </div>
+
+
+    <!-- المفاجأة -->
+    <div class="card hidden" id="birthdayCard">
+
+        <span class="float" style="left:8%;top:10%;">🤍</span>
+        <span class="float" style="right:10%;top:18%;">🎀</span>
+        <span class="float" style="left:12%;bottom:15%;">✨</span>
+        <span class="float" style="right:12%;bottom:12%;">🤍</span>
+
+        <div class="cake">
+            🎂
+        </div>
+
+        <h1>
+            كل عام وانتي بخير شمس 🤍
+        </h1>
+
+        <div class="message">
+
+            كل عام وانتي بخير 🤍🎂
+            <br>
+
+            حبيت أكون من الناس اللي يتمنولج يوم حلو بهالمناسبة، وإن شاء الله تكون سنتج الجديدة مليانة راحة وفرح وأشياء حلوة تستحقينها.
+
+            <br>
+
+            رغم إن معرفتنا كانت عن طريق الإنترنت، بس بصراحة خوش صدفة إني تعرفت عليج، وأتمنى تبقى هالمعرفة من الأشياء الحلوة بهالسنة 😂🤍
+
+            <br>
+
+            استمتعي بيومج، واليوم ممنوع الزعل 😌🎀
+
+        </div>
+
+        <div class="footer">
+            Made with a little bit of code & a lot of good wishes 💻🤍
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+const text =
+"birthday.shams(); // preparing something special...";
+
+const typing =
+document.getElementById("typing");
+
+const button =
+document.getElementById("openButton");
+
+const terminal =
+document.getElementById("terminal");
+
+const card =
+document.getElementById("birthdayCard");
+
+let index = 0;
+
+
+/* كتابة الكود */
+function typeText() {
+
+    if (index < text.length) {
+
+        typing.innerHTML =
+        text.substring(0, index + 1) +
+        '<span class="cursor"></span>';
+
+        index++;
+
+        setTimeout(typeText, 45);
+
+    } else {
+
+        button.disabled = false;
+
+        button.innerText =
+        "Open your surprise 🎁";
+
+    }
+}
+
+typeText();
+
+
+/* فتح المفاجأة */
+button.addEventListener("click", function() {
+
+    terminal.classList.add("hidden");
+
+    card.classList.remove("hidden");
+
+
+    /* Confetti */
+    const emojis =
+    ["🎉","✨","🤍","🎀","🥳","💗"];
+
+    for(let i = 0; i < 25; i++) {
+
+        const item =
+        document.createElement("span");
+
+        item.innerText =
+        emojis[i % emojis.length];
+
+        item.style.position =
+        "absolute";
+
+        item.style.left =
+        (5 + Math.random() * 90) + "%";
+
+        item.style.top =
+        (5 + Math.random() * 90) + "%";
+
+        item.style.fontSize =
+        (14 + Math.random() * 15) + "px";
+
+        item.style.animation =
+        "float " +
+        (2 + Math.random() * 2) +
+        "s ease-in-out infinite";
+
+        card.appendChild(item);
+    }
+
+});
+
+</script>
+
+</body>
+</html>
